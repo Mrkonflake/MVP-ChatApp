@@ -1,2 +1,17 @@
 # MVP-ChatApp
 Project for HackReactor MVP, Chat application utilizing socket.io
+
+This application is a twitch chat replica, to have live chat updates, with a live clock to represent the server being in sync
+
+DEPENDENCIES:
+npm install
+npm install -D tailwindcss postcss autoprefixer daisyui
+npm install express cors morgan axios socket.io dotenv --save
+npm i -g nodemon
+
+// to initialize tailwind \\ npx tailwindcss init -p
+
+
+TO START:
+Developer mode: npm run dev
+

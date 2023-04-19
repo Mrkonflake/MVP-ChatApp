@@ -1,0 +1,4 @@
+PORT=3000
+VITE_APP_SERVER='http://exampleURL:3000'
+CLIENT='http://exampleURL:5173'
+AI_API='TOKEN GOES HERE'

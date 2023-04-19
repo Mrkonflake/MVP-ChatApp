@@ -2,20 +2,17 @@ import { useState, useEffect } from 'react';
 import { io } from "socket.io-client"
 import axios from "axios";
 
-let Chat = ( { username }) => {
+let Chat = ( { username, socket }) => {
 
-  const socket = io(import.meta.env.VITE_APP_SERVER);
 
   let [message, setMessage] = useState("");
 
 
-  let [messages, setMessages] = useState([
-    {username: "Melonhead64", message: "im dumb"},
-    {username: "WillyT", message: "im gay"},
-    {username: "Mrkornflake", message: "im the best"},
-    {username: "XxX_AssAssIn_xXx", message: "Yuuuuh"},
-  ])
-
+  let [messages, setMessages] = useState([])
+  socket.on('seconds.update', function (data) {
+    var time = new Date(data.time);
+    console.log(time);
+});
   socket.on('recieve-message', newMessage => {
     setMessages([...messages, newMessage])
   });
@@ -35,7 +32,7 @@ let Chat = ( { username }) => {
 
   return (
     <div className="flex flex-col justify-center">
-      <div className="flex flex-col border-2 w-[400px] h-[500px]">
+      <div className="flex flex-col border-2 w-[400px] h-[500px] overscroll-auto">
       {messages.map(m => {
         return <p className="flex justify-center">{m.username}: {m.message}</p>
       })}

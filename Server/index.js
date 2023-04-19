@@ -21,6 +21,13 @@ app.use('/', routes);
 
 io.on('connection', (socket) => {
   console.log(`user connected ${socket.id}`);
+
+  setInterval(function(){
+    socket.emit('news_by_server', {
+      time: new Date()
+    });
+}, 1000);
+
   socket.on('send-message', (obj) => {
     console.log(obj);
     io.emit('recieve-message', (obj))

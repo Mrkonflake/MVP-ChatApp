@@ -8,6 +8,7 @@ npm install
 npm install -D tailwindcss postcss autoprefixer daisyui
 npm install express cors morgan axios socket.io dotenv --save
 npm i -g nodemon
+npm install @azure/msal-react @azure/msal-browser
 
 // to initialize tailwind \\ npx tailwindcss init -p
 

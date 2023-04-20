@@ -48,7 +48,7 @@ function App({socket}) {
   return (
     <div className="flex justify-center">
       { isAuthenticated ?
-      <Chat username={user.given_name} socket={socket} clock={clock}/>
+      <Chat username={user.given_name} socket={socket} clock={clock} dateFormat={dateFormat}/>
       : <LoginPage addUser={addUser} />
       }
     </div>

@@ -13,7 +13,7 @@ let Logout = ({ addUser }) => {
   return (
 
     isAuthenticated && (
-      <button onClick={() => logout()}>
+      <button  className="btn" onClick={() => logout()}>
         Sign out
     </button>
       )

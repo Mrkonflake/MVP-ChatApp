@@ -30,6 +30,8 @@ io.on('connection', (socket) => {
 }, 1000);
 
   socket.on('send-message', (obj) => {
+    let newDate = new Date()
+    obj.created_at = newDate;
     io.emit('recieve-message', (obj))
   })
 

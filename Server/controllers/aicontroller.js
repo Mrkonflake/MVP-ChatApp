@@ -15,6 +15,9 @@ module.exports = {
       if (err) console.log(err);
       console.log(results)
       res.json(results)
+      models.messages.storeMessage({username: 'OpenAi', message: results}, (err) => {
+        if (err)  throw err
+      })
         io.emit('recieve-message', {username: 'OpenAi', message: results})
     })
   },

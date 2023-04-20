@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const cors = require('cors');
+const db = require('./db.js');
 const routes = require('./routes');
 const openai = require('./AiConfig.js');
 const dotenv = require('dotenv').config();
@@ -29,7 +30,6 @@ io.on('connection', (socket) => {
 }, 1000);
 
   socket.on('send-message', (obj) => {
-    console.log(obj);
     io.emit('recieve-message', (obj))
   })
 

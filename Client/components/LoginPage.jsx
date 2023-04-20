@@ -1,32 +1,30 @@
 import {useState, useEffect} from 'react';
-import {useMsal, useMsalAuthentication} from '@azure/msal-react';
-import { InteractionType } from '@azure/msal-browser';
+
+
+import { useAuth0 } from '@auth0/auth0-react';
 
 let LoginPage = ({ addUser }) => {
-  useMsalAuthentication(InteractionType.Redirect);
+
+
+  const {loginWithRedirect, isAuthenticated} = useAuth0();
+
   const [form, setForm] = useState({
     username: "",
   })
-  // let handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   addUser(form);
-  // }
-  function Render() {
-    const { accounts } = useMsal();
-    try {
-      setForm({username: accounts[0].username})
-      addUser(form);
-    }
-    catch (e) {
-    }
-  }
+
+
   return (
-      <>
-      {Render()}
-      <div>Please wait...</div>
-      </>
+    !isAuthenticated && (
+      <button className="btn" onClick={() => loginWithRedirect()}>
+        Sign In
+    </button>
+      )
   )
 }
+// let handleSubmit = (e) => {
+//   e.preventDefault();
+//   addUser(form);
+// }
 
 // {/* <p className="text-red">this is the login page</p>
 // <form onSubmit={(e) => handleSubmit(e)}>

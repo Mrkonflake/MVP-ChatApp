@@ -8,5 +8,3 @@ RUN npm ci --only=production
 
 # Copy the application code to the container
 COPY . .
-
-CMD ["node", "./Server/index.js"]

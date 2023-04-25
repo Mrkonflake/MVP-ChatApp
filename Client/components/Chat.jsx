@@ -13,7 +13,7 @@ let Chat = ( { username, socket, clock, dateFormat }) => {
   let [messages, setMessages] = useState([])
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_APP_SERVER}/messages`)
+    axios.get(`http://ec2-44-204-84-192.compute-1.amazonaws.com:8080/messages`)
     .then(res => setMessages(res.data))
     .catch(err => console.log('error recieving messages'))
   },[])
@@ -27,16 +27,16 @@ let Chat = ( { username, socket, clock, dateFormat }) => {
     e.preventDefault();
 
     socket.emit('send-message', {username, message})
-    axios.post(`${import.meta.env.VITE_APP_SERVER}/messages`, {username, message})
+    axios.post(`http://ec2-44-204-84-192.compute-1.amazonaws.com:8080/messages`, {username, message})
   }
 
   let askAi = (e) => {
     e.preventDefault();
     socket.emit('send-message', {username, message})
-    axios.post(`${import.meta.env.VITE_APP_SERVER}/ai`, {role: 'user', content: message})
+    axios.post(`http://ec2-44-204-84-192.compute-1.amazonaws.com:8080/ai`, {role: 'user', content: message})
     .then(res => socket.emit('send-message', {username: 'OpenAi🤖', message: res.data}))
     .catch(err => console.log(err));
-    axios.post(`${import.meta.env.VITE_APP_SERVER}/messages`, {username, message})
+    axios.post(`http://ec2-44-204-84-192.compute-1.amazonaws.com:8080/messages`, {username, message})
   }
 
   return (

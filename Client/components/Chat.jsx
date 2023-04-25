@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { io } from "socket.io-client"
 import axios from "axios";
-import Logout from './Logout.jsx';
+// import Logout from './Logout.jsx';
 import Message from './Message.jsx';
 
 let Chat = ( { username, socket, clock, dateFormat }) => {
@@ -45,7 +45,7 @@ let Chat = ( { username, socket, clock, dateFormat }) => {
       <div className="flex justify-between bg-neutral-300">
         <h2 className="text-lg">{clock}</h2>
         <h2 className='text-xl'>Welcome to AI Group Chat</h2>
-        <Logout />
+        {/* <Logout /> */}
       </div>
       <div className="flex flex-col border-2  h-[600px] overflow-scroll overscroll-contain">
       {messages.map((m, i) => {

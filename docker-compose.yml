@@ -1,11 +1,18 @@
 version: '3.9'
 
+networks:
+  my_network:
+
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     env_file:
-      - .env.enc
-    scale: 10
+      - .env
+    deploy:
+      replicas: 10
+
   nginx:
     image: nginx
     volumes:
@@ -13,4 +20,5 @@ services:
     depends_on:
       - app
     ports:
-      - 3001:3001
+      - 8080:8080
+

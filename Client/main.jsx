@@ -7,16 +7,16 @@ import './index.css'
 const socket = io(import.meta.env.VITE_APP_SERVER);
 
 
-const domain =  import.meta.env.VITE_AUTH0_DOMAIN;
-const clientId =  import.meta.env.VITE_AUTH0_CLIENT_ID;
+// const domain =  import.meta.env.VITE_AUTH0_DOMAIN;
+// const clientId =  import.meta.env.VITE_AUTH0_CLIENT_ID;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Auth0Provider
-  domain={domain}
-  clientId={clientId}
-  redirectUri={import.meta.env.VITE_REDIRECT_CLIENT}
-  >
-    <App socket={socket}/>
-  </Auth0Provider >
+  <App socket={socket}/>
+  );
 
-);
+  // {/* </Auth0Provider > */}
+  // <Auth0Provider
+  // domain={domain}
+  // clientId={clientId}
+  // redirectUri={import.meta.env.VITE_REDIRECT_CLIENT}
+  // >

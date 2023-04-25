@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 COPY .env ./
 
 # Load the environment variables from the .env file
-ENV PORT=${PORT} \
+ENV PORT=5173 \
     VITE_APP_SERVER=${VITE_APP_SERVER} \
     CLIENT=${CLIENT} \
     VITE_REDIRECT_CLIENT=${VITE_REDIRECT_CLIENT} \
@@ -22,5 +22,5 @@ RUN npm install
 
 # Copy the application code to the container
 COPY . .
-EXPOSE 3001
-CMD ["node", "./Server/index.js"]
+EXPOSE 5173
+CMD ["npm", "run", "dev"]

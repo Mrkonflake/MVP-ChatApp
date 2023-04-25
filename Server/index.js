@@ -7,9 +7,8 @@ const routes = require('./routes');
 const openai = require('./AiConfig.js');
 const dotenv = require('dotenv').config();
 const io = require('socket.io')(server, {
-  path: '/socket.io',
   cors: {
-    origin: ['http://ec2-34-238-119-97.compute-1.amazonaws.com:5173'],
+    origin: ['http://localhost:5173'],
   }
 });
 const morgan = require('morgan');

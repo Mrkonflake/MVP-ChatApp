@@ -4,8 +4,12 @@ import App from './App'
 import { io } from "socket.io-client"
 import { Auth0Provider } from '@auth0/auth0-react';
 import './index.css'
-const socket = io('http://ec2-44-204-84-192.compute-1.amazonaws.com:8080', { path: '/socket.io' });
 
+const socket = io('http://localhost:8080', {
+  path: '/socket.io/',
+  autoConnect: false,
+  withCredentials: true
+});
 
 // const domain =  import.meta.env.VITE_AUTH0_DOMAIN;
 // const clientId =  import.meta.env.VITE_AUTH0_CLIENT_ID;

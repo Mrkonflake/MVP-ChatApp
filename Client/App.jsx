@@ -3,7 +3,6 @@ import LoginPage from './components/LoginPage.jsx';
 import Chat from './components/Chat.jsx';
 
 import { useAuth0 } from '@auth0/auth0-react';
-
 function App({socket}) {
 
   const [username, setUsername] = useState('');
@@ -45,6 +44,7 @@ function App({socket}) {
     setUsername(form.username);
     setLogin(true);
   }
+
   return (
     <div className="flex justify-center">
       { isLoggedin ?

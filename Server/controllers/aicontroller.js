@@ -5,7 +5,7 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
   cors: {
-    origin: ['http://ec2-44-204-84-192.compute-1.amazonaws.com:5173'],
+    origin: ['http://localhost:5173'],
   }
 });
 

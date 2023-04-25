@@ -4,6 +4,14 @@ networks:
   my_network:
 
 services:
+  vite:
+    build:
+      context: .
+      dockerfile: Dockerfile.vite
+    env_file:
+      - .env
+    ports:
+      - 5173:5173
   app:
     build:
       context: .

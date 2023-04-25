@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { io } from "socket.io-client"
 import axios from "axios";
-// import Logout from './Logout.jsx';
+import Logout from './Logout.jsx';
 import Message from './Message.jsx';
 
 let Chat = ( { username, socket, clock, dateFormat }) => {
@@ -23,20 +23,39 @@ let Chat = ( { username, socket, clock, dateFormat }) => {
     setMessages([...messages, newMessage])
   });
 
-  let sendMessage = (e) => {
+  let sendMessage = async (e) => {
     e.preventDefault();
 
-    socket.emit('send-message', {username, message})
-    axios.post(`/api/messages`, {username, message})
+    socket.emit('send-message', {username, message});
+
+    await fetch(`/socket.io/?EIO=4&transport=polling&t=${Date.now()}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: `sid=${socket.id}&data=${JSON.stringify([{ type: 'message', data: { username, message } }])}`
+    });
+
+    await fetch(`/api/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({username, message})
+    });
   }
 
   let askAi = (e) => {
     e.preventDefault();
     socket.emit('send-message', {username, message})
     axios.post(`/api/ai`, {role: 'user', content: message})
-    .then(res => socket.emit('send-message', {username: 'OpenAi🤖', message: res.data}))
-    .catch(err => console.log(err));
-    axios.post(`/api/messages`, {username, message})
+      .then(res => {
+        const aiMessage = {username: 'OpenAi🤖', message: res.data};
+        setMessages([...messages, aiMessage]);
+        socket.emit('send-message', aiMessage);
+      })
+      .catch(err => console.log('error asking AI', err))
+    setMessage('');
   }
 
   return (
@@ -45,7 +64,7 @@ let Chat = ( { username, socket, clock, dateFormat }) => {
       <div className="flex justify-between bg-neutral-300">
         <h2 className="text-lg">{clock}</h2>
         <h2 className='text-xl'>Welcome to AI Group Chat</h2>
-        {/* <Logout /> */}
+        <Logout />
       </div>
       <div className="flex flex-col border-2  h-[600px] overflow-scroll overscroll-contain">
       {messages.map((m, i) => {

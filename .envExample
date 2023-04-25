@@ -1,12 +1,4 @@
-PORT=3001
-VITE_APP_SERVER='http://localhost:3001'
-CLIENT='http://localhost:5173'
-VITE_REDIRECT_CLIENT='http://localhost:5173'
-
-
-AI_API="example api key"
-
-VITE_AUTH0_DOMAIN=domainkey
-VITE_AUTH0_CLIENT_ID=clientId
-MONGODB_PASSWORD=mongopass
-MONGODB_USERNAME=mongouser
+PORT=3000
+VITE_APP_SERVER='http://exampleURL:3000'
+CLIENT='http://exampleURL:5173'
+AI_API='TOKEN GOES HERE'

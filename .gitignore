@@ -1,7 +1,3 @@
 .env
-<<<<<<< HEAD
 /node_modules
 .env.enc
-=======
-node_modules
->>>>>>> parent of d6da6cc... added github username

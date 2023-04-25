@@ -8,7 +8,14 @@ import './index.css'
 const socket = io('http://localhost:8080', {
   path: '/socket.io/',
   autoConnect: false,
-  withCredentials: true
+  withCredentials: true,
+  transportOptions: {
+    polling: {
+      extraHeaders: {
+        "X-NginX-Proxy": "true"
+      }
+    }
+  }
 });
 
 // const domain =  import.meta.env.VITE_AUTH0_DOMAIN;

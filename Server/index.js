@@ -8,7 +8,7 @@ const openai = require('./AiConfig.js');
 const dotenv = require('dotenv').config();
 const io = require('socket.io')(server, {
   cors: {
-    origin: ['http://localhost:5173'],
+    origin: ['*'],
   }
 });
 const morgan = require('morgan');

@@ -20,7 +20,7 @@ let Chat = ( { username, socket, clock, dateFormat }) => {
 
 
   socket.on('recieve-message', newMessage => {
-    setMessages([...messages, newMessage])
+    setMessages(prevMessages => [...prevMessages, newMessage]);
   });
 
   let sendMessage = (e) => {

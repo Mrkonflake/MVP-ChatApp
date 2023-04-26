@@ -8,14 +8,19 @@ const openai = require('./AiConfig.js');
 const dotenv = require('dotenv').config();
 const io = require('socket.io')(server, {
   cors: {
-    origin: ['*'],
+    origin: ['http://localhost:5173'],
+    methods: ["GET", "POST"],
+    allowedHeaders: ['my-custom-header'],
+    credentials: true
   }
 });
 const morgan = require('morgan');
 const port = process.env.PORT || 3001;
 
 app.use(morgan('dev'));
-app.use(cors());
+// app.use(cors({
+//   origin: 'http://localhost:5173' // replace with your client's origin
+// }));
 app.use(express.json());
 
 app.use('/', routes);

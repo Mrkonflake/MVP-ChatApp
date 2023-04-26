@@ -34,6 +34,7 @@ function App({socket}) {
   let [clock, setClock] = useState(dateFormat(new Date()));
 
   socket.on('news_by_server', function(data){
+    console.log('happened')
     let result = dateFormat(data.time);
     setClock(result)
   });

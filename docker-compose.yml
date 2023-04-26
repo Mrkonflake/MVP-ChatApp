@@ -30,6 +30,7 @@ services:
     image: nginx
     volumes:
       - ./conf.d:/etc/nginx/conf.d
+      - ./nginx.conf:/etc/nginx/nginx.conf   # Add this line
     depends_on:
       - app
     ports:

@@ -1,8 +1,5 @@
 version: '3.9'
 
-networks:
-  my_network:
-
 services:
   vite:
     build:
@@ -12,9 +9,6 @@ services:
       - .env
     ports:
       - 5173:5173
-    networks:
-      - my_network
-
   app:
     build:
       context: .
@@ -23,8 +17,6 @@ services:
       - .env
     deploy:
       replicas: 10
-    networks:
-      - my_network
 
   nginx:
     image: nginx
@@ -35,5 +27,4 @@ services:
       - app
     ports:
       - 8080:8080
-    networks:
-      - my_network
+

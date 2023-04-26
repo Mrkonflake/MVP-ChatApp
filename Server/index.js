@@ -18,9 +18,9 @@ const morgan = require('morgan');
 const port = process.env.PORT || 3001;
 
 app.use(morgan('dev'));
-// app.use(cors({
-//   origin: 'http://localhost:5173' // replace with your client's origin
-// }));
+app.use(cors({
+  origin: 'http://localhost:5173' // replace with your client's origin
+}));
 app.use(express.json());
 
 app.use('/', routes);
